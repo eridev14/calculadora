@@ -1,5 +1,6 @@
 :root {
     background-color: #485165;
+    ---btn-gap: 5px;
 }
 
 * {
@@ -36,7 +37,7 @@ body {
 }
 
 .header {
-    height: 25%;
+    height: 100px;
     border: inset 1px 1px black;
     color: white;
     display: flex;
@@ -49,19 +50,19 @@ body {
 }
 
 .header__input {
-    flex: 1;
+    min-height: 50px;
     width: 100%;
     line-height: 60px;
     overflow: hidden;
 }
 
 .header__result {
-    flex: 1;
+    min-height: 50px;
     text-align: end;
-    line-height: 60px;
+    line-height: 40px;
     overflow: hidden;
-    /* border-bottom: 1px solid;
-    border-top: 1px solid; */
+    /* border-bottom: 1px solid; */
+    border-top: 1px solid;
 }
 
 .main {
@@ -71,25 +72,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: var(---btn-gap);
 }
 
 .row {
-    display: grid;
-    grid-template-columns: repeat(5, 60px);
-    gap: 5px;
-    margin-bottom: 5px;
-}
-
-.row-3 {
     display: flex;
-    justify-content: space-between;
-    /* gap: 5px; */
-}
-
-.row3__col {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    gap: var(---btn-gap);
 }
 
 .btn {
@@ -114,21 +102,32 @@ body {
 }
 
 .btn--equal {
-    grid-column: span 3;
+    flex: 3;
     background-color: rgb(66, 154, 255);
     color: white;
 }
 
-.btn--on{
+.btn--on {
     background-color: greenyellow;
 }
 
-.btn--off{
+.btn--off {
     background-color: rgb(255, 47, 47);
 }
 
-.btn--op{
+.btn--op {
     background-color: #7a7979;
     color: rgba(255, 255, 255, 0.89);
 }
 
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(---btn-gap);
+}
+
+.pr {
+    display: flex;
+    flex-direction: column;
+    gap: var(---btn-gap);
+}
