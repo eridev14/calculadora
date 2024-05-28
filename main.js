@@ -15,14 +15,17 @@ numbers.addEventListener('click', (e) => {
 });
 
 const zero = document.querySelector('.btn--zero');
-let firstZero = true;
 zero.addEventListener('click', (e) => {
     let num = e.target.textContent;
     last = num;
-    if (firstZero) {
-        inp.textContent += num;
-        firstZero = false;
-    }
+    inp.textContent += num;
+})
+
+const point = document.querySelector('.btn--point');
+point.addEventListener('click', (e) => {
+    let num = e.target.textContent;
+    last = num;
+    inp.textContent += num;
 })
 
 //borrar todo
@@ -53,6 +56,7 @@ operators.addEventListener('click', (e) => {
         || last === '-'
         || last === '*'
         || last === '/'
+        || last === '.'
     ) {
         return;
     }
@@ -62,6 +66,7 @@ operators.addEventListener('click', (e) => {
         || op === '-'
         || op === '*'
         || op === '/'
+        || op === '%'
     ) {
         inp.textContent += op;
     }
@@ -76,16 +81,44 @@ btnEqual.addEventListener('click', () => {
         || last === '-'
         || last === '*'
         || last === '/'
+        || last === '%'
         || last === ''
+        || last === '.'
     ) {
         return;
     }
 
     let textRes = inp.textContent;
-    let reg = textRes.split(/(\+|\-|\*|\/)/);
-    console.log(reg);
-    displayRes.textContent = eval(inp.textContent);
-    console.log(res);
-    console.log(inp.textContent);
+    let reg = textRes.split(/(\+|\-|\*|\/|\%)/);
+    let ac = parseFloat(reg[0]);
+    for (let i = 1; i < reg.length; i += 2) {
+        if (i % 2 !== 0) {
+            if (reg[i] === "+") {
+                let num = parseFloat(reg[i + 1])
+                ac += num;
+            }
+
+            if (reg[i] === "-") {
+                let num = parseFloat(reg[i + 1])
+                ac -= num;
+            }
+
+            if (reg[i] === "*") {
+                let num = parseFloat(reg[i + 1])
+                ac *= num;
+            }
+
+            if (reg[i] === "/") {
+                let num = parseFloat(reg[i + 1])
+                ac /= num;
+            }
+
+            if (reg[i] === "%") {
+                let num = parseFloat(reg[i + 1])
+                ac = ac % num;
+            }
+        }
+    }
+    displayRes.textContent = eval(ac);
 })
 
