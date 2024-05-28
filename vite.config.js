@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    base: 'https://github.com/eridev14/calculadora'
+    base: 'https://eridev14.github.io/calculadora/'
 });
